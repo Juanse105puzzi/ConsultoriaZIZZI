@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIZZI Consultora de Recursos Humanos</title>
+  <style>
+    :root {
+      --blue: #2b3a67; /* azul arándano */
+      --blue-light: #3f518a;
+      --accent: #f5f7ff;
+      --text: #1f2430;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: var(--accent);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--blue), var(--blue-light));
+      color: var(--white);
+      padding: 1.2rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .logo span {
+      font-weight: 300;
+      font-size: 0.8rem;
+      display: block;
+      letter-spacing: 0.2em;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3.5rem 2rem 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.5fr);
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    .hero-text h1 {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: var(--blue);
+    }
+
+    .hero-text p {
+      margin-bottom: 1.2rem;
+      max-width: 520px;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.9);
+      color: var(--blue);
+      font-size: 0.8rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid rgba(43,58,103,0.18);
+    }
+
+    .hero-cta {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem 1.6rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 25px rgba(43,58,103,0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-light);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blue);
+      border-radius: 999px;
+      border: 1px solid var(--blue-light);
+      padding: 0.75rem 1.4rem;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: var(--white);
+      border-radius: 1.2rem;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 0.8rem;
+      color: var(--blue);
+    }
+
+    .hero-card ul {
+      list-style: none;
+      font-size: 0.9rem;
+    }
+
+    .hero-card li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.3rem;
+      position: relative;
+    }
+
+    .hero-card li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      position: absolute;
+      left: 0;
+      top: 0.55rem;
+    }
+
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 2rem;
+    }
+
+    h2.section-title {
+      font-size: 1.6rem;
+      margin-bottom: 0.3rem;
+      color: var(--blue);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 2rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.4rem;
+      color: var(--blue);
+    }
+
+    .service-card p {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.18);
+      color: #475569;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .about-story {
+      font-size: 0.95rem;
+      color: #475569;
+    }
+
+    .founders {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .founder-card {
+      background: var(--white);
+      border-radius: 0.9rem;
+      padding: 1rem 1.1rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .founder-name {
+      font-weight: 600;
+      color: var(--blue);
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .founder-meta {
+      font-size: 0.8rem;
+      color: #64748b;
+      margin-bottom: 0.3rem;
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .step {
+      background: var(--white);
+      border-radius: 0.9rem;
+      padding: 1rem 1.1rem;
+      border: 1px dashed rgba(148, 163, 184, 0.8);
+      font-size: 0.9rem;
+    }
+
+    .step span {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--blue);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 2rem;
+      align-items: start;
+    }
+
+    form {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.9rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+      color: var(--blue);
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 0.55rem 0.7rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      margin-bottom: 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .contact-note {
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .contact-note strong {
+      color: var(--blue);
+    }
+
+    footer {
+      background: var(--blue);
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      margin-top: 2rem;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .footer-inner a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .footer-inner a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .about-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        padding: 1rem 1.4rem;
+      }
+
+      section {
+        padding: 2rem 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="logo">SIZZI<br><span>CONSULTORA RH</span></div>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#proceso">Cómo trabajamos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <div class="pill">Consultora joven para Pymes que quieren cuidar a su gente</div>
+        <h1>SIZZI, experiencia de personas y procesos de RRHH a medida.</h1>
+        <p>Acompañamos a pequeñas y medianas empresas a ordenar sus procesos de Recursos Humanos, mejorar la experiencia de sus equipos y tomar mejores decisiones de talento.</p>
+        <p>Desde La Plata al resto del país, diseñamos soluciones simples, claras y accionables para el día a día de tu negocio.</p>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">Agendar una consulta</button>
+          <button class="btn-outline" onclick="document.getElementById('servicios').scrollIntoView({behavior: 'smooth'})">Ver servicios</button>
+        </div>
+      </div>
+      <aside class="hero-card">
+        <h2>Qué puede hacer SIZZI por tu Pyme</h2>
+        <ul>
+          <li>Filtrado y preselección de curriculums según perfil buscado.</li>
+          <li>Diseño de propuestas de People Experience (onboarding, clima, feedback).</li>
+          <li>Acompañamiento en procesos de selección y entrevistas.</li>
+          <li>Diseño básico de descripciones de puesto y perfiles.</li>
+          <li>Asesoramiento inicial para ordenar el área de RRHH.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="servicios">
+      <h2 class="section-title">Servicios de SIZZI</h2>
+      <p class="section-subtitle">Pensados para Pymes que necesitan soluciones claras y cercanas en Recursos Humanos.</p>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="badge">People Experience</div>
+          <h3>Diseño de experiencia de personas</h3>
+          <p>Armamos junto a vos una experiencia completa para tus colaboradores: bienvenida, primeros días, feedback, reconocimiento y acciones simples para mejorar el clima laboral.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="badge">Selección</div>
+          <h3>Filtrado y preselección de CVs</h3>
+          <p>Recibimos y filtramos curriculums según el perfil que necesita tu Pyme, organizamos la información y te presentamos una terna clara para que puedas decidir con tranquilidad.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="badge">Entrevistas</div>
+          <h3>Acompañamiento en entrevistas</h3>
+          <p>Diseñamos guías de entrevista, te acompañamos en las reuniones con candidatos y te ayudamos a evaluar competencias y adecuación cultural al equipo.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="badge">Procesos</div>
+          <h3>Organización del área de RRHH</h3>
+          <p>Te ayudamos a ordenar los procesos básicos del área: circuitos de ingreso, comunicaciones internas, documentación clave y buenas prácticas para el día a día.</p>
+        </article>
+
+        <article class="service-card">
+          <div class="badge">Consultoría</div>
+          <h3>Asesoría para Pymes</h3>
+          <p>Revisamos la situación actual de tu empresa en temas de personas, detectamos puntos de mejora y proponemos un plan simple y realista para avanzar paso a paso.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <h2 class="section-title">Quiénes somos</h2>
+      <p class="section-subtitle">SIZZI nace de la mirada fresca de dos estudiantes apasionados por los Recursos Humanos y el mundo Pyme.</p>
+      <div class="about-layout">
+        <div class="about-story">
+          <p>SIZZI es una consultora de Recursos Humanos creada por dos amigos y compañeros de facultad que comparten el mismo interés: acercar la consultoría a Pymes que enfrentan desafíos similares en la gestión de sus personas.</p>
+          <br />
+          <p>Como estudiantes de la Licenciatura en Gestión de Recursos Humanos, traemos una mirada actualizada, curiosa y muy cercana al día a día de los equipos. Creemos en soluciones prácticas, lenguaje simple y acciones concretas que se puedan implementar sin burocracia.</p>
+          <br />
+          <p>Sabemos que muchas Pymes no cuentan con un área formal de RRHH, pero sí con la necesidad de ordenar procesos, atraer talento y cuidar a su gente. Ahí es donde queremos acompañar desde SIZZI.</p>
+        </div>
+        <div class="founders">
+          <article class="founder-card">
+            <div class="founder-name">Juan Sebastián Puzzi</div>
+            <div class="founder-meta">20 años · Estudiante de Lic. en Gestión de RRHH · La Plata</div>
+            <p>Co-fundador de SIZZI, apasionado por la experiencia de las personas y la mejora continua en los procesos de talento dentro de las Pymes.</p>
+          </article>
+          <article class="founder-card">
+            <div class="founder-name">Camila Zisko</div>
+            <div class="founder-meta">21 años · Estudiante de Lic. en Gestión de RRHH · La Plata</div>
+            <p>Co-fundadora de SIZZI, interesada en construir entornos de trabajo más humanos, cercanos y alineados con los objetivos del negocio.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <h2 class="section-title">Cómo trabajamos</h2>
+      <p class="section-subtitle">Buscamos que cada proyecto sea claro, ordenado y cercano.</p>
+      <div class="process-steps">
+        <div class="step">
+          <span>Paso 1</span>
+          <strong>Reunión inicial sin costo</strong><br />
+          Conversamos sobre tu Pyme, tu equipo y los principales desafíos que estás viviendo hoy en RRHH.
+        </div>
+        <div class="step">
+          <span>Paso 2</span>
+          <strong>Propuesta simple y clara</strong><br />
+          Te acercamos una propuesta concreta con pasos, tiempos estimados y entregables.
+        </div>
+        <div class="step">
+          <span>Paso 3</span>
+          <strong>Acompañamiento cercano</strong><br />
+          Trabajamos juntos, mantenemos comunicación constante y ajustamos cuando es necesario.
+        </div>
+        <div class="step">
+          <span>Paso 4</span>
+          <strong>Cierre y próximos pasos</strong><br />
+          Dejamos por escrito lo trabajado y, si lo necesitas, proponemos nuevas instancias de acompañamiento.
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <p class="section-subtitle">Contanos sobre tu Pyme y coordinemos una primera charla.</p>
+      <div class="contact-grid">
+        <form>
+          <label for="nombre">Nombre y apellido</label>
+          <input id="nombre" name="nombre" type="text" placeholder="Ej: María González" />
+
+          <label for="empresa">Nombre de la empresa</label>
+          <input id="empresa" name="empresa" type="text" placeholder="Ej: Pymesur SRL" />
+
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email" placeholder="tu@empresa.com" />
+
+          <label for="servicio">Servicio de interés</label>
+          <select id="servicio" name="servicio">
+            <option value="">Elegí una opción</option>
+            <option>People Experience</option>
+            <option>Filtrado de CVs</option>
+            <option>Selección y entrevistas</option>
+            <option>Organización de RRHH</option>
+            <option>Asesoría general para Pymes</option>
+          </select>
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu necesidad o consulta..."></textarea>
+
+          <button class="btn-primary" type="submit">Enviar consulta</button>
+        </form>
+        <div class="contact-note">
+          <p>Por ahora, coordinamos nuestras reuniones de forma online, adaptándonos a los horarios de cada Pyme.</p>
+          <br />
+          <p>Podés sumar en el mensaje tu disponibilidad horaria y el medio de contacto que preferís (mail, videollamada, etc.).</p>
+          <br />
+          <p><strong>SIZZI</strong> · Consultora de Recursos Humanos joven, cercana y pensada para Pymes.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> SIZZI · Consultora de Recursos Humanos</div>
+      <div>La Plata, Buenos Aires, Argentina</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
